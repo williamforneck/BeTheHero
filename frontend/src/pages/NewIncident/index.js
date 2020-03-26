@@ -8,8 +8,6 @@ import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
 
-const ongId = localStorage.getItem('ongId');
-
 export default function NewIncident() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -17,13 +15,15 @@ export default function NewIncident() {
 
     const history = useHistory();
 
+    const ongId = localStorage.getItem('ongId');
+
     async function handleNewIncident(e) {
         e.preventDefault();
 
         const data = {
             title,
             description, 
-            value
+            value,
         };
 
         try {
@@ -32,6 +32,7 @@ export default function NewIncident() {
                     Authorization: ongId,
                 }
             })
+
             history.push('/profile');
         } catch (err){
             alert('Caso não foi cadastrado, tente novamente.');
